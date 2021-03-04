@@ -1,0 +1,91 @@
+var idquantita = document.getElementsByClassName("input-text qty text")[0].id; //questo prende l'id del campo di input vicino ad acquista
+document.getElementById("calcPrivate").addEventListener("click",calcola);
+document.getElementById(idquantita).addEventListener("keyup",cambia);
+document.getElementById("calcPriceCO2").innerHTML='4 CHF';
+document.getElementById("result").style.visibility="hidden";
+
+function calcola(){
+	
+	setTimeout(function(){ document.getElementById("result").style.visibility="visible"; }, 4000);
+
+	
+	
+	
+	var membri= document.getElementById("form-field-membri").value;
+	var benzina= document.getElementById("form-field-benzina").value;
+	var diesel= document.getElementById("form-field-diesel").value;
+	var kwh= document.getElementById("form-field-kwh").value;
+	var m2= document.getElementById("form-field-m2").value;
+	var idquantita = document.getElementsByClassName("input-text qty text")[0].id; //mi ricavo l'id di woocomerce
+
+
+
+	var totale= (membri*2)+(benzina*0.0007)+(diesel*0.0003)+(kwh*0.0004)+(m2*0.002);
+	totale= Math.ceil(totale); //tonnelate di co2
+	var alberi=totale*34;
+
+	document.getElementById(idquantita).value=alberi; //mette il nmero di alberi nella form vicino acquista
+	var rettangolo="il tuo impatto ambientale è di "+totale+" tonnellate di CO2 all'anno e servono "+alberi +" alberi per compensarlo";
+	document.getElementById("result").innerHTML=rettangolo; //cambia il rettangolo con il testo automaticamente
+
+	var quanti=(document.getElementById(idquantita).value);
+	prezzo=quanti*4;
+	//kgtotali=quanti*10;
+
+	var stringa=prezzo + " CHF";
+	document.getElementById("calcPriceCO2").innerHTML=stringa;
+}
+
+function cambia(){
+
+	var idquantita = document.getElementsByClassName("input-text qty text")[0].id; //questo prende l'id del campo di input vicino ad acquista
+	var quanti=(document.getElementById(idquantita).value);
+	prezzo=quanti*4;
+	//kgtotali=quanti*10;
+
+	var stringa=prezzo + " CHF";
+	document.getElementById("calcPriceCO2").innerHTML=stringa;
+}
+
+
+//CALCOLATRICE BUSINESS
+document.getElementById("calcBusiness").addEventListener("click",calcolaBusiness);
+
+document.getElementById(idquantita).addEventListener("keyup",cambia);
+idquantita.min=67;
+
+function calcolaBusiness(){
+	
+	setTimeout(function(){ document.getElementById("result").style.visibility="visible"; }, 3000);
+
+	
+	
+var membri= document.getElementById("form-field-dipendenti").value;
+	var benzina= document.getElementById("form-field-mezzi").value;
+	var diesel= document.getElementById("form-field-merci").value;
+	var kwh1= document.getElementById("form-field-kwh1").value;
+	var aereo= document.getElementById("form-field-aereo").value;
+	var treno= document.getElementById("form-field-treno").value;
+	var settore= document.getElementById("form-field-settore").value;
+	
+	var idquantita = document.getElementsByClassName("input-text qty text")[0].id; //mi ricavo l'id di woocomerce
+
+
+
+	var totale= (membri*2)+(benzina*0.0007)+(diesel*0.0003)+(kwh1*0.0004)+(aereo*0.002)+(treno*0.007)+(settore*0.002);
+	totale= Math.ceil(totale); //tonnelate di co2
+	var alberi=totale*34;
+
+	document.getElementById(idquantita).value=alberi; //mette il nmero di alberi nella form vicino acquista
+	var rettangolo="il tuo impatto ambientale è di "+totale+" tonnellate di CO2 all'anno e servono "+alberi +" alberi per compensarlo";
+	document.getElementById("result").innerHTML=rettangolo; //cambia il rettangolo con il testo automaticamente
+
+	var quanti=(document.getElementById(idquantita).value);
+	prezzo=quanti*5;
+	//kgtotali=quanti*10;
+
+	var stringa=prezzo + " CHF";
+	document.getElementById("calcPriceCO2").innerHTML=stringa;
+
+}
+
